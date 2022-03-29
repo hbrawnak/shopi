@@ -1,4 +1,11 @@
 import {ActionTypes} from "../constants/action-types";
+import storeApi from "../../apis/storeApi";
+
+export const fetchProducts = () => async (dispatch) => {
+    const response = await storeApi.get("/products");
+    dispatch({type: ActionTypes.FETCH_PRODUCTS, payload: response.data});
+};
+
 
 export const setProducts = (products) => {
     return {
@@ -17,7 +24,7 @@ export const selectedProduct = (product) => {
 
 
 export const removeSelectedProduct = () => {
-  return {
-      type: ActionTypes.REMOVE_SELECTED_PRODUCT
-  }
+    return {
+        type: ActionTypes.REMOVE_SELECTED_PRODUCT
+    }
 }
